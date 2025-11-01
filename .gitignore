@@ -26,6 +26,7 @@ dist/
 *.swo
 *~
 
+.venv
 # OS
 .DS_Store
 Thumbs.db
