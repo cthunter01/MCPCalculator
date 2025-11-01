@@ -203,9 +203,20 @@ export class BCProcess {
       );
     }
 
-    // Set scale using BC's scale variable
-    await this.evaluate(`scale=${scale}`);
+    if (!this.process || !this.process.stdin) {
+      throw new BCCalculatorError(
+        'BC process not ready',
+        BCErrorCode.BC_NOT_READY
+      );
+    }
+
+    // Set scale directly - BC's scale assignment produces no output
+    // so we write directly instead of using evaluate()
+    this.process.stdin.write(`scale=${scale}\n`);
     this.currentPrecision = scale;
+    
+    // Give BC a moment to process the scale command
+    await new Promise(resolve => setTimeout(resolve, 50));
   }
 
   /**
