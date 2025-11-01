@@ -1,0 +1,32 @@
+{
+  "name": "bc-calculator-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for BC (Basic Calculator) integration with arbitrary precision arithmetic",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "bc-calculator": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && node -e \"const fs = require('fs'); if (fs.existsSync('build/index.js')) fs.chmodSync('build/index.js', '755')\"",
+    "watch": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "calculator",
+    "bc",
+    "math",
+    "arbitrary-precision",
+    "model-context-protocol"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
