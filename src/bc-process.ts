@@ -40,12 +40,13 @@ export class BCProcess {
       this.setupHandlers();
 
       // Wait a moment for process to be ready
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Mark as ready before setting precision
+      this.isReady = true;
 
       // Initialize precision using BC's scale variable
       await this.setPrecision(this.options.precision);
-      
-      this.isReady = true;
     } catch (error) {
       throw new BCCalculatorError(
         `Failed to start BC process: ${error instanceof Error ? error.message : String(error)}`,
